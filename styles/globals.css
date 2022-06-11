@@ -68,37 +68,33 @@ body::-webkit-scrollbar-thumb {
   flex-direction: column;
 }
 
-.sticky-nav {
-  position: sticky;
-  z-index: 10;
-  top: -1px;
-  backdrop-filter: blur(5px);
+.header-inner {
+  background-image: url(/header.png);
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.sticky-nav .navbar-wrapper{
+  position: fixed;
+  top: 0;
+}
+
+.navbar{
   transition: all 0.5s cubic-bezier(0.4, 0, 0, 1);
-  border-bottom-color: transparent;
 }
 
-.remove-sticky {
-  position: unset;
+.title{
+  transition: all 0.5s cubic-bezier(0.4, 0, 0, 1);
 }
 
-.sticky-nav-full {
-  @apply border-b border-opacity-50 border-gray-200 dark:border-gray-600 dark:border-opacity-50;
+.sticky-nav .navbar{
+  @apply right-0 translate-x-0
 }
 
-.header-name {
-  display: none;
-  opacity: 0;
-  overflow: hidden;
+.sticky-nav .title{
+  @apply opacity-100 translate-x-0
 }
 
-.sticky-nav-full .nav {
-  @apply text-gray-600 dark:text-gray-300;
-}
-
-nav {
-  flex-wrap: wrap;
-  line-height: 1.5em;
-}
 
 .article-tags::-webkit-scrollbar {
   width: 0 !important;

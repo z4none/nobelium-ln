@@ -3,7 +3,7 @@ import Link from 'next/link'
 import BLOG from '@/blog.config'
 import { useLocale } from '@/lib/locale'
 
-const NavBar = () => {
+const NavBar = ({ navBarTitle, className }) => {
   const locale = useLocale()
   const links = [
     { id: 0, name: locale.NAV.INDEX, to: BLOG.path || '/', show: true },
@@ -12,14 +12,28 @@ const NavBar = () => {
     { id: 3, name: locale.NAV.SEARCH, to: '/search', show: true }
   ]
   return (
-    <div className="flex-shrink-0">
-      <ul className="flex flex-row">
+    <div className={className}>
+      <div className="title absolute left-0 h-12 items-center flex opacity-0 text-lg text-white translate-x-4">
+        {navBarTitle
+          ? (
+            <p className="">
+              {navBarTitle}
+            </p>
+            )
+          : (
+            <p className="">
+              {BLOG.title},{' '}
+              <span className="font-normal">{BLOG.description}</span>
+            </p>
+            )}
+      </div>
+      <ul className="navbar absolute right-1/2 translate-x-1/2 flex flex-row justify-center items-center h-12 text-white">
         {links.map(
           link =>
             link.show && (
               <li
                 key={link.id}
-                className="block ml-4 text-black dark:text-gray-50 nav"
+                className="block ml-4"
               >
                 <Link href={link.to}>
                   <a>{link.name}</a>
@@ -33,18 +47,13 @@ const NavBar = () => {
 }
 
 const Header = ({ navBarTitle, fullWidth }) => {
-  const useSticky = !BLOG.autoCollapsedNavBar
   const navRef = useRef(null)
   const sentinalRef = useRef([])
   const handler = ([entry]) => {
-    if (navRef && navRef.current && useSticky) {
-      if (!entry.isIntersecting && entry !== undefined) {
-        navRef.current?.classList.add('sticky-nav-full')
-      } else {
-        navRef.current?.classList.remove('sticky-nav-full')
-      }
+    if (entry && !entry.isIntersecting) {
+      navRef.current?.classList.add('sticky-nav')
     } else {
-      navRef.current?.classList.add('remove-sticky')
+      navRef.current?.classList.remove('sticky-nav')
     }
   }
   useEffect(() => {
@@ -58,63 +67,18 @@ const Header = ({ navBarTitle, fullWidth }) => {
   }, [sentinalRef])
   return (
     <>
-      <div className="observer-element h-4 md:h-12" ref={sentinalRef}></div>
       <div
-        className={`sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 md:mb-12 py-8 bg-opacity-60 ${
-          !fullWidth ? 'max-w-3xl px-4' : 'px-4 md:px-24'
-        }`}
-        id="sticky-nav"
+        className="header relative m-auto w-full mb-20 bg-gray-500 z-10"
         ref={navRef}
       >
-        <div className="flex items-center">
-          <Link href="/">
-            <a aria-label={BLOG.title}>
-              <div className="h-6">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    width="24"
-                    height="24"
-                    className="fill-current text-black dark:text-white"
-                  />
-                  <rect width="24" height="24" fill="url(#paint0_radial)" />
-                  <defs>
-                    <radialGradient
-                      id="paint0_radial"
-                      cx="0"
-                      cy="0"
-                      r="1"
-                      gradientUnits="userSpaceOnUse"
-                      gradientTransform="rotate(45) scale(39.598)"
-                    >
-                      <stop stopColor="#CFCFCF" stopOpacity="0.6" />
-                      <stop offset="1" stopColor="#E9E9E9" stopOpacity="0" />
-                    </radialGradient>
-                  </defs>
-                </svg>
-              </div>
-            </a>
-          </Link>
-          {navBarTitle
-            ? (
-            <p className="ml-2 font-medium text-day dark:text-night header-name">
-              {navBarTitle}
-            </p>
-              )
-            : (
-            <p className="ml-2 font-medium text-day dark:text-night header-name">
-              {BLOG.title},{' '}
-              <span className="font-normal">{BLOG.description}</span>
-            </p>
-              )}
+        <div className="header-inner h-60"></div>
+        <div className="navbar-wrapper absolute top-full w-full h-12 bg-gray-700 shadow-lg">
+          <div className="max-w-4xl mx-auto">
+            <NavBar navBarTitle={navBarTitle} className="relative" />
+          </div>
         </div>
-        <NavBar />
       </div>
+      <div className="observer-element h-60 w-full absolute" ref={sentinalRef}></div>
     </>
   )
 }

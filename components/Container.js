@@ -63,7 +63,7 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
         )}
       </Head>
       <div
-        className={`wrapper ${
+        className={`wrapper bg-gray-100  ${
           BLOG.font === 'serif' ? 'font-serif' : 'font-sans'
         }`}
       >
@@ -72,8 +72,8 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
           fullWidth={fullWidth}
         />
         <main
-          className={`m-auto flex-grow w-full transition-all ${
-            !fullWidth ? 'max-w-2xl px-4' : 'px-4 md:px-24'
+          className={`m-auto flex-grow w-full bg-white border border-gray transition-all ${
+            !fullWidth ? 'max-w-4xl p-12' : 'px-4 md:px-24'
           }`}
         >
           {children}
