@@ -59,11 +59,6 @@ const Header = ({ navBarTitle, fullWidth }) => {
   useEffect(() => {
     const obvserver = new window.IntersectionObserver(handler)
     obvserver.observe(sentinalRef.current)
-    // Don't touch this, I have no idea how it works XD
-    // return () => {
-    //   if (sentinalRef.current) obvserver.unobserve(sentinalRef.current)
-    // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sentinalRef])
   return (
     <>
@@ -73,7 +68,7 @@ const Header = ({ navBarTitle, fullWidth }) => {
       >
         <div className="header-inner h-60"></div>
         <div className="navbar-wrapper absolute top-full w-full h-12 shadow-lg">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <NavBar navBarTitle={navBarTitle} className="relative" />
           </div>
         </div>
