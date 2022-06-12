@@ -66,7 +66,7 @@ const Header = ({ navBarTitle, fullWidth }) => {
         className="header relative m-auto w-full mb-8 bg-gray-500 z-10"
         ref={navRef}
       >
-        <div className="header-inner h-60" style={{backgroundImage: 'url(' +  BLOG.header_bg + ')'}}></div>
+        <div className="header-inner h-60" style={{ backgroundImage: 'url(' +  BLOG.header_bg + ')' }}></div>
         <div className="navbar-wrapper absolute top-full w-full h-12 shadow-lg">
           <div className="max-w-5xl mx-auto">
             <NavBar navBarTitle={navBarTitle} className="relative" />
