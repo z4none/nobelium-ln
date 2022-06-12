@@ -68,17 +68,17 @@ const Header = ({ navBarTitle, fullWidth }) => {
   return (
     <>
       <div
-        className="header relative m-auto w-full mb-20 bg-gray-500 z-10"
+        className="header relative m-auto w-full mb-8 bg-gray-500 z-10"
         ref={navRef}
       >
         <div className="header-inner h-60"></div>
-        <div className="navbar-wrapper absolute top-full w-full h-12 bg-gray-700 shadow-lg">
+        <div className="navbar-wrapper absolute top-full w-full h-12 shadow-lg">
           <div className="max-w-4xl mx-auto">
             <NavBar navBarTitle={navBarTitle} className="relative" />
           </div>
         </div>
       </div>
-      <div className="observer-element h-60 w-full absolute" ref={sentinalRef}></div>
+      <div className="observer-element h-48 w-full absolute" ref={sentinalRef}></div>
     </>
   )
 }
