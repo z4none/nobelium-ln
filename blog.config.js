@@ -1,10 +1,10 @@
 const BLOG = {
-  title: process.env.TITLE,
-  author: process.env.AUTHOR,
-  email: process.env.EMAIL,
-  link: process.env.LINK,
-  description: process.env.DESCRIPTION,
-  header_bg: process.env.HEADER_BG,
+  title: process.env.NEXT_PUBLIC_TITLE,
+  author: process.env.NEXT_PUBLIC_AUTHOR,
+  email: process.env.NEXT_PUBLIC_EMAIL,
+  link: process.env.NEXT_PUBLIC_LINK,
+  description: process.env.NEXT_PUBLIC_DESCRIPTION,
+  header_bg: process.env.NEXT_PUBLIC_HEADER_BG,
   lang: 'zh-CN', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   appearance: 'light', // ['light', 'dark', 'auto'],
   font: 'sans-serif', // ['sans-serif', 'serif']
