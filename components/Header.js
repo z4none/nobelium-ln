@@ -69,12 +69,12 @@ const Header = ({ navBarTitle, fullWidth }) => {
         <div className="header-inner h-60 flex items-center justify-center text-4xl text-white drop-shadow" style={{ backgroundImage: 'url(' + BLOG.header_bg + ')' }}>
           {navBarTitle
             ? (
-              <span style={{transform: 'translate(0, -0.8em)'}}>
+              <span style={{ transform: 'translate(0, -0.8em)' }}>
                 {navBarTitle}
               </span>
               )
             : (
-              <span style={{transform: 'translate(0, -0.8em)'}}>
+              <span style={{ transform: 'translate(0, -0.8em)' }}>
                 <div>{BLOG.title}</div>
                 <div className="text-sm text-center">{BLOG.description}</div>
               </span>
