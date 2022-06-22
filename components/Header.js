@@ -66,7 +66,20 @@ const Header = ({ navBarTitle, fullWidth }) => {
         className="header relative m-auto w-full mb-8 bg-gray-500 z-10"
         ref={navRef}
       >
-        <div className="header-inner h-60" style={{ backgroundImage: 'url(' + BLOG.header_bg + ')' }}></div>
+        <div className="header-inner h-60 flex items-center justify-center text-4xl text-white drop-shadow" style={{ backgroundImage: 'url(' + BLOG.header_bg + ')' }}>
+          {navBarTitle
+            ? (
+              <span style={{transform: 'translate(0, -0.8em)'}}>
+                {navBarTitle}
+              </span>
+              )
+            : (
+              <span style={{transform: 'translate(0, -0.8em)'}}>
+                <div>{BLOG.title}</div>
+                <div className="text-sm text-center">{BLOG.description}</div>
+              </span>
+              )}
+        </div>
         <div className="navbar-wrapper absolute top-full w-full h-12 shadow-lg">
           <div className="max-w-5xl mx-auto">
             <NavBar navBarTitle={navBarTitle} className="relative" />
