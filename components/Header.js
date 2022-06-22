@@ -66,7 +66,7 @@ const Header = ({ navBarTitle, fullWidth }) => {
         className="header relative m-auto w-full mb-8 bg-gray-500 z-10"
         ref={navRef}
       >
-        <div className="header-inner h-60 flex items-center justify-center text-4xl text-white drop-shadow" style={{ backgroundImage: 'url(' + BLOG.header_bg + ')' }}>
+        <div className="header-inner h-60 flex items-center justify-center text-5xl text-white" style={{ backgroundImage: 'url(' + BLOG.header_bg + ')', textShadow: '0 0 20px rgba(0,0,0,0.5)', letterSpacing: '.05em' }}>
           {navBarTitle
             ? (
               <span style={{ transform: 'translate(0, -0.8em)' }}>
