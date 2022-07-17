@@ -68,21 +68,37 @@ body::-webkit-scrollbar-thumb {
   flex-direction: column;
 }
 
+@keyframes kenburns {
+  0% {
+    background-size: 100%;
+    background-position: 50% 50%;
+  }
+
+  100% {
+    background-size: 150%;
+    background-position: 35% 65%;
+  }
+}
+
 .header-inner {
-  background-image: url(/header.png);
+  animation: kenburns 60s infinite alternate;
   background-position: 50% 50%;
-  background-size: cover;
+  background-size: 100%;
 }
 
 .navbar-wrapper {
-  background: rgba(0, 0, 0, 0.5);
   transform: translate(0, -100%);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(255, 255, 255, 0.2));
+  color: #ffffff;
 }
 
 .sticky-nav .navbar-wrapper{  
   transform: translate(0, 0);
   position: fixed;
   top: 0;
+  color: #000;
+  background: rgba(255, 255,255, 2);
+  color: #000000;
 }
 
 .navbar{

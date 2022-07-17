@@ -1,0 +1,1 @@
+set NOTION={notionPageId: '3d21516a01314900a2183d7665507388'} & set NEXT_PUBLIC_PUB={headerBg: 'url(https://one.z4none.me/api/raw/?path=/images/bg_1.jpg)'} & yarn dev

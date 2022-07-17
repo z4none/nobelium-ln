@@ -1,6 +1,7 @@
 import Container from '@/components/Container'
 import BlogPost from '@/components/BlogPost'
 import Pagination from '@/components/Pagination'
+import SiteInfo from '@/components/SiteInfo'
 import { getAllPosts } from '@/lib/notion'
 import BLOG from '@/blog.config'
 
@@ -22,10 +23,17 @@ export async function getStaticProps () {
 const blog = ({ postsToShow, page, showNext }) => {
   return (
     <Container title={BLOG.title} description={BLOG.description}>
-      {postsToShow.map(post => (
-        <BlogPost key={post.id} post={post} />
-      ))}
-      {showNext && <Pagination page={page} showNext={showNext} />}
+      <div className='grid grid-cols-12 gap-6'>
+        <div className='col-span-3'>
+          <SiteInfo/>
+        </div>
+        <div className='col-span-9'>
+        {postsToShow.map(post => (
+          <BlogPost key={post.id} post={post} />
+        ))}
+        {showNext && <Pagination page={page} showNext={showNext} />}
+        </div>
+      </div>
     </Container>
   )
 }

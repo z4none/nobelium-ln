@@ -13,7 +13,7 @@ const NavBar = ({ navBarTitle, className }) => {
   ]
   return (
     <div className={className}>
-      <div className="title absolute left-0 h-12 items-center flex opacity-0 text-lg text-white translate-x-4">
+      <div className="title absolute left-0 h-12 items-center flex opacity-0 text-lg translate-x-4">
         {navBarTitle
           ? (
             <p className="">
@@ -21,19 +21,19 @@ const NavBar = ({ navBarTitle, className }) => {
             </p>
             )
           : (
-            <p className="">
+            <p className="text-xl">
               {BLOG.title},{' '}
               <span className="font-normal">{BLOG.description}</span>
             </p>
             )}
       </div>
-      <ul className="navbar absolute right-1/2 translate-x-1/2 flex flex-row justify-center items-center h-12 text-white">
+      <ul className="navbar absolute right-1/2 translate-x-1/2 flex flex-row justify-center items-center h-12">
         {links.map(
           link =>
             link.show && (
               <li
                 key={link.id}
-                className="block ml-4"
+                className="block ml-8"
               >
                 <Link href={link.to}>
                   <a>{link.name}</a>
@@ -66,7 +66,7 @@ const Header = ({ navBarTitle, fullWidth }) => {
         className="header relative m-auto w-full mb-8 bg-gray-500 z-10"
         ref={navRef}
       >
-        <div className="header-inner h-60 flex items-center justify-center text-5xl text-white" style={{ backgroundImage: 'url(' + BLOG.header_bg + ')', textShadow: '0 0 20px rgba(0,0,0,0.5)', letterSpacing: '.05em' }}>
+        <div className="header-inner h-60 flex items-center justify-center text-5xl text-white" style={{ background: BLOG.headerBg, textShadow: '0 0 20px rgba(0,0,0,0.5)', letterSpacing: '.05em' }}>
           {navBarTitle
             ? (
               <span style={{ transform: 'translate(0, -0.8em)' }}>

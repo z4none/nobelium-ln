@@ -30,7 +30,7 @@ const Layout = ({
       type="article"
       fullWidth={fullWidth}
     >
-      <article>
+      <article className="bg-white border border-gray p-8">
         <h1 className="font-bold text-3xl text-black dark:text-white">
           {frontMatter.title}
         </h1>
