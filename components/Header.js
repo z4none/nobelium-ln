@@ -3,7 +3,7 @@ import Link from 'next/link'
 import BLOG from '@/blog.config'
 import { useLocale } from '@/lib/locale'
 
-const NavBar = ({ navBarTitle, className }) => {
+const NavBar = ({ title, className }) => {
   const locale = useLocale()
   const links = [
     { id: 0, name: locale.NAV.INDEX, to: BLOG.path || '/', show: true },
@@ -14,18 +14,9 @@ const NavBar = ({ navBarTitle, className }) => {
   return (
     <div className={className}>
       <div className="title absolute left-0 h-12 items-center flex opacity-0 text-lg translate-x-4">
-        {navBarTitle
-          ? (
-            <p className="">
-              {navBarTitle}
-            </p>
-            )
-          : (
-            <p className="text-xl">
-              {BLOG.title},{' '}
-              <span className="font-normal">{BLOG.description}</span>
-            </p>
-            )}
+        <p className="">
+          {title}
+        </p>
       </div>
       <ul className="navbar absolute right-1/2 translate-x-1/2 flex flex-row justify-center items-center h-12">
         {links.map(
@@ -46,7 +37,7 @@ const NavBar = ({ navBarTitle, className }) => {
   )
 }
 
-const Header = ({ navBarTitle, fullWidth }) => {
+const Header = ({ title, fullWidth }) => {
   const navRef = useRef(null)
   const sentinalRef = useRef([])
   const handler = ([entry]) => {
@@ -67,22 +58,10 @@ const Header = ({ navBarTitle, fullWidth }) => {
         ref={navRef}
       >
         <div className="header-inner h-60 flex items-center justify-center text-5xl text-white" style={{ background: BLOG.headerBg, textShadow: '0 0 20px rgba(0,0,0,0.5)', letterSpacing: '.05em' }}>
-          {navBarTitle
-            ? (
-              <span style={{ transform: 'translate(0, -0.8em)' }}>
-                {navBarTitle}
-              </span>
-              )
-            : (
-              <span style={{ transform: 'translate(0, -0.8em)' }}>
-                <div>{BLOG.title}</div>
-                <div className="text-sm text-center">{BLOG.description}</div>
-              </span>
-              )}
         </div>
         <div className="navbar-wrapper absolute top-full w-full h-12 shadow-lg">
-          <div className="max-w-5xl mx-auto">
-            <NavBar navBarTitle={navBarTitle} className="relative" />
+          <div className="max-w-7xl mx-auto px-12">
+            <NavBar title={title} className="relative" />
           </div>
         </div>
       </div>
