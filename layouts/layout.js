@@ -100,8 +100,6 @@ const Layout = ({
           <Comments frontMatter={frontMatter} />
         </div>
       </div>
-      
-      
     </Container>
   )
 }

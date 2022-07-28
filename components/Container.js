@@ -71,7 +71,7 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
           title={layout === 'blog' ? meta.title : null}
         />
         <main
-          className={`m-auto flex-grow w-full transition-all max-w-7xl px-12`}
+          className={'m-auto flex-grow w-full transition-all max-w-7xl px-12'}
         >
           {children}
         </main>
