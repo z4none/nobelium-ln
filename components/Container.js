@@ -63,22 +63,19 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
         )}
       </Head>
       <div
-        className={`wrapper bg-gray-100  ${
+        className={`wrapper bg-gray-50  ${
           BLOG.font === 'serif' ? 'font-serif' : 'font-sans'
         }`}
       >
         <Header
-          navBarTitle={layout === 'blog' ? meta.title : null}
-          fullWidth={fullWidth}
+          title={layout === 'blog' ? meta.title : null}
         />
         <main
-          className={`m-auto flex-grow w-full bg-white border border-gray transition-all ${
-            !fullWidth ? 'max-w-5xl p-12' : 'px-4 md:px-24'
-          }`}
+          className={`m-auto flex-grow w-full transition-all max-w-7xl px-12`}
         >
           {children}
         </main>
-        <Footer fullWidth={fullWidth} />
+        <Footer />
       </div>
     </div>
   )

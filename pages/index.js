@@ -1,11 +1,13 @@
 import Container from '@/components/Container'
 import BlogPost from '@/components/BlogPost'
 import Pagination from '@/components/Pagination'
-import { getAllPosts } from '@/lib/notion'
+import SiteInfo from '@/components/SiteInfo'
+import { getAllPosts, getAllTagsFromPosts } from '@/lib/notion'
 import BLOG from '@/blog.config'
 
 export async function getStaticProps () {
   const posts = await getAllPosts({ includePages: false })
+  const tags = getAllTagsFromPosts(posts)
   const postsToShow = posts.slice(0, BLOG.postsPerPage)
   const totalPosts = posts.length
   const showNext = totalPosts > BLOG.postsPerPage
@@ -13,19 +15,28 @@ export async function getStaticProps () {
     props: {
       page: 1, // current page is 1
       postsToShow,
-      showNext
+      showNext,
+      posts,
+      tags
     },
     revalidate: 1
   }
 }
 
-const blog = ({ postsToShow, page, showNext }) => {
+const blog = ({ postsToShow, page, showNext, posts, tags }) => {
   return (
     <Container title={BLOG.title} description={BLOG.description}>
-      {postsToShow.map(post => (
-        <BlogPost key={post.id} post={post} />
-      ))}
-      {showNext && <Pagination page={page} showNext={showNext} />}
+      <div className='grid grid-cols-12 gap-6'>
+        <div className='col-span-3'>
+          <SiteInfo className='sticky top-20' postCount={posts.length} tagCount={Object.keys(tags).length}/>
+        </div>
+        <div className='col-span-9'>
+        {postsToShow.map(post => (
+          <BlogPost key={post.id} post={post} />
+        ))}
+        {showNext && <Pagination page={page} showNext={showNext} />}
+        </div>
+      </div>
     </Container>
   )
 }
