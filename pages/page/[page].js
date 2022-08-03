@@ -1,8 +1,9 @@
 import Container from '@/components/Container'
 import BlogPost from '@/components/BlogPost'
 import Pagination from '@/components/Pagination'
-import SiteInfo from '@/components/SiteInfo'
-import { getAllPosts, getAllTagsFromPosts } from '@/lib/notion'
+// import SiteInfo from '@/components/SiteInfo'
+// import { getAllPosts, getAllTagsFromPosts } from '@/lib/notion'
+import { getAllPosts } from '@/lib/notion'
 import BLOG from '@/blog.config'
 
 const Page = ({ postsToShow, page, showNext, posts, tags }) => {
@@ -10,7 +11,8 @@ const Page = ({ postsToShow, page, showNext, posts, tags }) => {
     <Container>
       <div className='grid grid-cols-12 gap-6'>
         <div className='col-span-3'>
-          <SiteInfo className='sticky top-20' postCount={posts.length} tagCount={Object.keys(tags).length}/>
+          {/* <SiteInfo className='sticky top-20' postCount={posts.length} tagCount={Object.keys(tags).length}/> */}
+          {posts} {tags}
         </div>
         <div className='col-span-9'>
         {postsToShow.map(post => (
@@ -26,7 +28,7 @@ const Page = ({ postsToShow, page, showNext, posts, tags }) => {
 export async function getStaticProps (context) {
   const { page } = context.params // Get Current Page No.
   const posts = await getAllPosts({ includePages: false })
-  const tags = getAllTagsFromPosts(posts)
+  // const tags = getAllTagsFromPosts(posts)
   const postsToShow = posts.slice(
     BLOG.postsPerPage * (page - 1),
     BLOG.postsPerPage * page
@@ -37,9 +39,9 @@ export async function getStaticProps (context) {
     props: {
       page, // Current Page
       postsToShow,
-      showNext,
-      posts,
-      tags
+      showNext
+      // posts,
+      // tags
     },
     revalidate: 1
   }

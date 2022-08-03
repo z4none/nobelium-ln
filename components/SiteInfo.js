@@ -5,7 +5,7 @@ const SiteInfo = ({ className, postCount, tagCount }) => {
   return (
     <div className={`p-8 mb-8 bg-white border border-gray shadow-sm text-center ${className}` }>
       <div className="mx-auto w-20 h-20">
-        <Image src="/v.png" alt="" />
+        <Image src="/v.png" layout='fill' />
       </div>
       <p className="mt-4">
         {BLOG.title}
