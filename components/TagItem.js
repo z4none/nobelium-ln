@@ -3,7 +3,7 @@ import Link from 'next/link'
 const TagItem = ({ tag }) => (
   <Link href={`/tag/${encodeURIComponent(tag)}`}>
     <a>
-      <p className="mr-1 rounded-full px-2 py-1 border leading-none text-sm dark:border-gray-600">
+      <p className="bg-blue-500 text-white text-xs font-normal mr-2 px-1.5 py-0.5 rounded">
         {tag}
       </p>
     </a>

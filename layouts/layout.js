@@ -37,25 +37,16 @@ const Layout = ({
         </div>
         <div className='col-span-9'>
           <article className="bg-white border border-gray p-8">
-            <h1 className="font-bold text-3xl text-black">
+            <h1 className="text-2xl font-bold text-black">
               {frontMatter.title}
             </h1>
             {frontMatter.type[0] !== 'Page' && (
-              <nav className="flex mt-7 items-start text-gray-500">
-                <div className="flex mb-4">
-                  <a href={BLOG.socialLink || '#'} className="flex">
-                    <p className="ml-2 md:block">{BLOG.author}</p>
-                  </a>
-                  <span className="block">&nbsp;/&nbsp;</span>
-                </div>
-                <div className="mr-2 mb-4 md:ml-0">
-                  {formatDate(
-                    frontMatter?.date?.start_date || frontMatter.createdTime,
-                    BLOG.lang
-                  )}
-                </div>
+              <nav className="flex my-6 items-start text-gray-500 items-center">
+                <time className="mr-4">
+                  {formatDate(frontMatter?.date?.start_date || frontMatter.createdTime)}
+                </time>
                 {frontMatter.tags && (
-                  <div className="flex flex-nowrap max-w-full overflow-x-auto article-tags">
+                  <div className="flex flex-nowrap max-w-full overflow-x-auto">
                     {frontMatter.tags.map(tag => (
                       <TagItem key={tag} tag={tag} />
                     ))}
