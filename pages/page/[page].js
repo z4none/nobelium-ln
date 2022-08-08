@@ -2,16 +2,15 @@ import Container from '@/components/Container'
 import BlogPost from '@/components/BlogPost'
 import Pagination from '@/components/Pagination'
 import SiteInfo from '@/components/SiteInfo'
-// import { getAllPosts, getAllTagsFromPosts } from '@/lib/notion'
-import { getAllPosts } from '@/lib/notion'
+import { getAllPosts, getAllTagsFromPosts } from '@/lib/notion'
 import BLOG from '@/blog.config'
 
-const Page = ({ postsToShow, page, showNext }) => {
+const Page = ({ postsToShow, page, showNext, posts, tags }) => {
   return (
     <Container>
       <div className='grid grid-cols-12 gap-6'>
         <div className='col-span-3'>
-          { <SiteInfo className='sticky top-20' postCount={11} tagCount={22}/> }
+          { posts && <SiteInfo className='sticky top-20' postCount={posts.length} tagCount={Object.keys(tags).length}/> }
         </div>
         <div className='col-span-9'>
         {postsToShow && postsToShow.map(post => (
@@ -27,6 +26,7 @@ const Page = ({ postsToShow, page, showNext }) => {
 export async function getStaticProps (context) {
   const { page } = context.params // Get Current Page No.
   const posts = await getAllPosts({ includePages: false })
+  const tags = getAllTagsFromPosts(posts)
   const postsToShow = posts.slice(
     BLOG.postsPerPage * (page - 1),
     BLOG.postsPerPage * page
@@ -37,7 +37,9 @@ export async function getStaticProps (context) {
     props: {
       page, // Current Page
       postsToShow,
-      showNext
+      showNext,
+      posts,
+      tags
     },
     revalidate: 1
   }
