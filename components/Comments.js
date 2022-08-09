@@ -1,31 +1,25 @@
 import BLOG from '@/blog.config'
-import '@waline/client/dist/waline.css'
+import React, { useRef } from 'react'
+import useScript from '../lib/useScript'
 
-import React, { PureComponent } from 'react'
+const Comments = () => {
+  const comment = useRef(null)
 
-export default class Comment extends PureComponent {
-  constructor (props) {
-    super(props)
-    this._commentRef = React.createRef()
-  }
+  useScript({
+    url: 'https://utteranc.es/client.js',
+    theme: 'github-light',
+    issueTerm: 'url',
+    repo: BLOG.utterances,
+    ref: comment
+  })
 
-  async componentDidMount () {
-    if (typeof window === 'undefined') {
-      return
-    }
-    if (!this._commentRef.current) {
-      return
-    }
-    const Waline = await import('@waline/client')
-    this.Waline = Waline.init({
-      el: this._commentRef.current,
-      serverURL: BLOG.waline,
-      visitor: true,
-      path: this.props.slug
-    })
-  }
-
-  render () {
-    return <div id='comment' ref={this._commentRef} />
-  }
+  return (
+    <div className="w-full">
+      {
+        <div ref={comment}></div>
+      }
+    </div>
+  )
 }
+
+export default Comments
