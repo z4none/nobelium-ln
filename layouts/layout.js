@@ -70,7 +70,7 @@ const Layout = ({
               </div>
             )}
           </article>
-          <div className="flex justify-between pt-8 font-medium text-gray-500">
+          <div className="flex justify-between py-4 font-medium text-gray-500">
             <a>
               <button
                 onClick={() => router.push(BLOG.path || '/')}
@@ -88,7 +88,7 @@ const Layout = ({
               </button>
             </a>
           </div>
-          <Comments frontMatter={frontMatter} />
+          <Comments slug={frontMatter.slug} />
         </div>
       </div>
     </Container>

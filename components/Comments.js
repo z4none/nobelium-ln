@@ -1,64 +1,32 @@
-import { fetchCusdisLang } from '@/lib/cusdisLang'
-import BLOG from '@/blog.config'
+// import BLOG from '@/blog.config'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import 'gitalk/dist/gitalk.css'
+import { init } from '@waline/client';
+import '@waline/client/dist/waline.css';
 
-const GitalkComponent = dynamic(
-  () => {
-    return import('gitalk/dist/gitalk-component')
-  },
-  { ssr: false }
-)
-const UtterancesComponent = dynamic(
-  () => {
-    return import('@/components/Utterances')
-  },
-  { ssr: false }
-)
-const CusdisComponent = dynamic(
-  () => {
-    return import('react-cusdis').then(m => m.ReactCusdis)
-  },
-  { ssr: false }
-)
+import React, { PureComponent } from 'react';
 
-const Comments = ({ frontMatter }) => {
-  const router = useRouter()
-  return (
-    <div>
-      {BLOG.comment && BLOG.comment.provider === 'gitalk' && (
-        <GitalkComponent
-          options={{
-            id: frontMatter.id,
-            title: frontMatter.title,
-            clientID: BLOG.comment.gitalkConfig.clientID,
-            clientSecret: BLOG.comment.gitalkConfig.clientSecret,
-            repo: BLOG.comment.gitalkConfig.repo,
-            owner: BLOG.comment.gitalkConfig.owner,
-            admin: BLOG.comment.gitalkConfig.admin,
-            distractionFreeMode: BLOG.comment.gitalkConfig.distractionFreeMode
-          }}
-        />
-      )}
-      {BLOG.comment && BLOG.comment.provider === 'utterances' && (
-        <UtterancesComponent issueTerm={frontMatter.id} />
-      )}
-      {BLOG.comment && BLOG.comment.provider === 'cusdis' && (
-        <CusdisComponent
-        lang={fetchCusdisLang()}
-          attrs={{
-            host: BLOG.comment.cusdisConfig.host,
-            appId: BLOG.comment.cusdisConfig.appId,
-            pageId: frontMatter.id,
-            pageTitle: frontMatter.title,
-            pageUrl: BLOG.link + router.asPath,
-            theme: BLOG.appearance
-          }}
-        />
-      )}
-    </div>
-  )
+export default class Comment extends PureComponent {
+  constructor(props) {
+    super(props)
+    this._commentRef = React.createRef()
+   }
+  async componentDidMount() {
+    if (typeof window === "undefined") {
+      return
+    }
+    if(!this._commentRef.current) {
+      return
+    }
+    const Waline= await import('@waline/client')
+    this.Waline = Waline.init({
+      el: this._commentRef.current, 
+      serverURL: 'https://cmt.z4none.me/',
+      visitor: true,
+      path: this.props.slug, 
+     })
+   }
+  render() {
+        return <div id='comment' ref={this._commentRef} />
+   }
 }
-
-export default Comments

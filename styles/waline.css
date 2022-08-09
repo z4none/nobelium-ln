@@ -1,0 +1,24 @@
+.wl-comment {
+    font-size: 1em;
+}
+
+.wl-comment .wl-panel {
+    border-radius: 0 !important;
+    margin: 0;
+}
+
+.wl-comment .wl-panel .wl-header {
+    font-size: 1.25em;
+    border: none;
+    border-bottom: solid 1px #ccc;
+}
+
+.wl-comment .wl-editor {
+    border-radius: 0;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+.wl-comment .wl-editor:focus, .wl-comment .wl-input:focus {
+    background: #efefef;
+}
