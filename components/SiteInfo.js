@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const SiteInfo = ({ className, postCount, tagCount }) => {
   return (
-    <div className={`p-8 mb-8 bg-white border border-gray shadow-sm text-center ${className}` }>
+    <div className={`p-8 mb-8 bg-white rounded border border-gray shadow-sm text-center ${className}` }>
       <div className="mx-auto w-20 h-20">
         <Image src="/v.png" width="100%" height="100%" />
       </div>

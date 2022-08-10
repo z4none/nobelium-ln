@@ -36,7 +36,7 @@ const Layout = ({
           <SiteInfo className='sticky top-20' postCount={posts.length} tagCount={Object.keys(tags).length}/>
         </div>
         <div className='col-span-9'>
-          <article className="bg-white border border-gray p-8">
+          <article className="bg-white rounded border border-gray p-8">
             <h1 className="text-2xl font-bold text-black">
               {frontMatter.title}
             </h1>

@@ -56,6 +56,10 @@ const BLOG = {
       measurementId: '' // e.g: G-XXXXXXXXXX
     }
   },
+  comment: {
+    giscus: {
+    }
+  },
   isProd: process.env.VERCEL_ENV === 'production', // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
   ...ENV
 }
