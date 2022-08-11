@@ -6,14 +6,23 @@ const Footer = ({ fullWidth }) => {
   const from = +BLOG.since
   return (
     <div
-      className={'mt-6 flex-shrink-0 px-12 m-auto w-full text-gray-500 transition-all max-w-7xl'}
+      className={'mt-6 flex-shrink-0   w-full bg-gray-700 text-gray-300 transition-all'}
     >
-      <div className="my-4 text-sm leading-6">
+      <div className="mx-auto max-w-7xl px-12 py-8 text-sm leading-6">
         <div className="flex align-baseline justify-between flex-wrap">
-          <p>
-            © {BLOG.author} {from === y || !from ? y : `${from} - ${y}`}
-          </p>
-          <Vercel />
+          <div></div>
+          {/* <div className="-ml-0.5 w-0.5 bg-gray-600"></div> */}
+          <div>
+            <div className="mb-2">
+              copyright © {BLOG.author} {from === y || !from ? y : `${from} - ${y}`}
+            </div>
+            <div className="mb-3">
+              <Vercel/>
+            </div>
+            <div>
+              { BLOG.badge && (<img src={BLOG.badge} alt="counter" className="mb-2 float-right"/>) }
+            </div>
+          </div>
         </div>
       </div>
     </div>
