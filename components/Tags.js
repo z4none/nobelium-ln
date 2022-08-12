@@ -10,7 +10,7 @@ const Tags = ({ tags, currentTag }) => {
           return (
             <li
               key={key}
-              className={`m-1 font-medium text-sm border whitespace-nowrap hover:border-gray-400 ${
+              className={`m-1 font-medium text-sm whitespace-nowrap hover:border-gray-400 ${
                 selected
                   ? 'text-white bg-black border-black'
                   : 'bg-gray-200 border-gray-200 text-gray-500'

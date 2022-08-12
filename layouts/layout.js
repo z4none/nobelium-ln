@@ -52,6 +52,8 @@ const Layout = ({
                     ))}
                   </div>
                 )}
+                <div className="flex-grow"></div>
+                { <img src={`https://counter.z4none.workers.dev/badge/blog/post/${frontMatter.slug}`} className="justify-items-end"/> }
               </nav>
             )}
             {children}
