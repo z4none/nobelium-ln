@@ -32,10 +32,10 @@ const Layout = ({
       type="article"
     >
       <div className='grid grid-cols-12 gap-6'>
-        <div className='col-span-3'>
+        <div className='col-span-3 hidden md:block'>
           <SiteInfo className='sticky top-20' postCount={posts.length} tagCount={Object.keys(tags).length}/>
         </div>
-        <div className='col-span-9'>
+        <div className='col-span-12 md:col-span-9'>
           <article className="bg-white rounded border border-gray p-8">
             <h1 className="text-2xl font-bold text-black">
               {frontMatter.title}

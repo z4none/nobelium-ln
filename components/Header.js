@@ -13,26 +13,28 @@ const NavBar = ({ title, className }) => {
   ]
   return (
     <div className={className}>
-      <div className="title absolute left-0 h-12 items-center flex opacity-0 text-lg translate-x-4">
-        <p className="">
+      <div className="text-lg flex">
+        <p className="title">
           {title}
         </p>
+
+        <ul className="navbar flex flex-row items-center h-12">
+          {links.map(
+            link =>
+              link.show && (
+                <li
+                  key={link.id}
+                  className="block mx-4 whitespace-nowrap"
+                >
+                  <Link href={link.to}>
+                    <a>{link.name}</a>
+                  </Link>
+                </li>
+              )
+          )}
+        </ul>
       </div>
-      <ul className="navbar absolute right-1/2 translate-x-1/2 flex flex-row justify-center items-center h-12">
-        {links.map(
-          link =>
-            link.show && (
-              <li
-                key={link.id}
-                className="block ml-8"
-              >
-                <Link href={link.to}>
-                  <a>{link.name}</a>
-                </Link>
-              </li>
-            )
-        )}
-      </ul>
+      
     </div>
   )
 }
@@ -59,7 +61,7 @@ const Header = ({ title, fullWidth }) => {
       >
         <div className="header-inner h-60 flex items-center justify-center text-5xl text-white" style={{ background: BLOG.headerBg, textShadow: '0 0 20px rgba(0,0,0,0.5)', letterSpacing: '.05em' }}>
         </div>
-        <div className="navbar-wrapper absolute top-full w-full h-12 shadow-lg">
+        <div className="navbar-wrapper absolute top-full w-full">
           <div className="max-w-7xl mx-auto px-12">
             <NavBar title={title} className="relative" />
           </div>

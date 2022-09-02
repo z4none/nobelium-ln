@@ -9,10 +9,10 @@ const Page = ({ postsToShow, page, showNext, posts, tags }) => {
   return (
     <Container>
       <div className='grid grid-cols-12 gap-6'>
-        <div className='col-span-3'>
-          { posts && <SiteInfo className='sticky top-20' postCount={posts.length} tagCount={Object.keys(tags).length}/> }
+        <div className='col-span-3 hidden md:block'>
+        { posts && <SiteInfo className='sticky top-20' postCount={posts.length} tagCount={Object.keys(tags).length}/>}
         </div>
-        <div className='col-span-9'>
+        <div className='col-span-12 md:col-span-9'>        
         {postsToShow && postsToShow.map(post => (
           <BlogPost key={post.id} post={post} />
         ))}

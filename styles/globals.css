@@ -87,18 +87,41 @@ body::-webkit-scrollbar-thumb {
 }
 
 .navbar-wrapper {
-  transform: translate(0, -100%);
-  background: rgba(255, 255,255, 0.5);
-  color: #000000;
-}
-
-.sticky-nav .navbar-wrapper{  
-  transform: translate(0, 0);
   position: fixed;
   top: 0;
-  color: #000;
-  background: rgba(255, 255,255, 1.0);
+  background: rgba(255, 255,255, 0.0);
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  height: 3rem;
+}
+
+
+.navbar-wrapper .title {
+  display: none;
+  line-height: 3rem;
+}
+
+.navbar-wrapper .navbar {
+  position: absolute;
+  left: 0%;
+  transform: translateX(-0%);
+}
+
+.sticky-nav .navbar-wrapper .navbar {
+  position: absolute;
+  left: 100%;
+  transform: translateX(-100%);
+}
+
+.sticky-nav .navbar-wrapper .title {
+  display: block;
+}
+
+.sticky-nav .navbar-wrapper{
   color: #000000;
+  text-shadow: none;
+  background: rgba(255, 255,255, 1.0);
+  @apply right-0 translate-x-0 shadow-lg
 }
 
 .navbar{
@@ -108,15 +131,6 @@ body::-webkit-scrollbar-thumb {
 .title{
   transition: all 0.5s cubic-bezier(0.4, 0, 0, 1);
 }
-
-.sticky-nav .navbar{
-  @apply right-0 translate-x-0
-}
-
-.sticky-nav .title{
-  @apply opacity-100 translate-x-0
-}
-
 
 .article-tags::-webkit-scrollbar {
   width: 0 !important;
@@ -136,24 +150,20 @@ body::-webkit-scrollbar-thumb {
   user-select: none;
 }
 
-@media (min-width: 768px) {
-  .sticky-nav-full {
-    @apply max-w-full border-b border-opacity-50 border-gray-200 dark:border-gray-600 dark:border-opacity-50;
+@media (max-width: 768px) {
+  .navbar-wrapper { 
+    height: 6rem;
   }
-  .header-name {
-    display: block;
-    opacity: 0;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0, 1);
+
+  .sticky-nav .navbar-wrapper .title {
+    flex: auto;
+    text-align: center;
   }
-  .sticky-nav-full .header-name {
-    opacity: 1;
-    @apply dark:text-gray-300 text-gray-600;
+  
+  .sticky-nav .navbar-wrapper .navbar {
+    top: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
-@supports not (backdrop-filter: none) {
-  .sticky-nav {
-    backdrop-filter: none;
-    @apply bg-day bg-opacity-90 dark:bg-night dark:bg-opacity-90;
-  }
-}

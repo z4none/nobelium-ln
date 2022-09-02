@@ -27,10 +27,10 @@ const blog = ({ postsToShow, page, showNext, posts, tags }) => {
   return (
     <Container title={BLOG.title} description={BLOG.description}>
       <div className='grid grid-cols-12 gap-6'>
-        <div className='col-span-3'>
+      <div className='col-span-3 hidden md:block'>
           <SiteInfo className='sticky top-20' postCount={posts.length} tagCount={Object.keys(tags).length}/>
         </div>
-        <div className='col-span-9'>
+        <div className='col-span-12 md:col-span-9'>
         {postsToShow.map(post => (
           <BlogPost key={post.id} post={post} />
         ))}
